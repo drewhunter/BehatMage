@@ -14,22 +14,8 @@ namespace MageTest\MagentoExtension;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Behat\Behat\Context\ServiceContainer\ContextExtension;
-use Behat\MinkExtension\ServiceContainer\Driver\DriverFactory;
-use Behat\MinkExtension\ServiceContainer\Driver\GoutteFactory;
-use Behat\MinkExtension\ServiceContainer\Driver\SahiFactory;
-use Behat\MinkExtension\ServiceContainer\Driver\SaucelabsFactory;
-use Behat\MinkExtension\ServiceContainer\Driver\Selenium2Factory;
-use Behat\MinkExtension\ServiceContainer\Driver\SeleniumFactory;
-use Behat\MinkExtension\ServiceContainer\Driver\ZombieFactory;
-use Behat\Testwork\EventDispatcher\ServiceContainer\EventDispatcherExtension;
-use Behat\Testwork\ServiceContainer\Exception\ProcessingException;
-use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
+
 
 /**
  * Magento extension for Behat class.
@@ -69,19 +55,15 @@ class Extension implements ExtensionInterface
      */
     public function configure(ArrayNodeDefinition $builder)
     {
-
     }
 
     /**
-     * Loads extension services into temporary container.
-     *
      * @param ContainerBuilder $container
      * @param array            $config
      */
     public function load(ContainerBuilder $container, array $config)
     {
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/services'));
-        $loader->load('core.xml');
+        require_once (__DIR__.'../../../../../../../app/autoload.php');
     }
 
     /**
